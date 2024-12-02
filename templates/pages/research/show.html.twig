@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Research{% endblock %}
+
+{% block body %}
+    <h1>Research</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ research.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ research.title }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ research.createdAt ? research.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ research.updatedAt ? research.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_research_index') }}">back to list</a>
+
+    <a href="{{ path('app_research_edit', {'id': research.id}) }}">edit</a>
+
+    {{ include('research/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,1567 @@
+<!doctype html>
+<html lang="fr" data-layout-mode="dark" data-body-image="none">
+
+<head>
+
+    {{ include('layout/title.html.twig', {title: 'Accueil'}) }}
+
+    <!--Swiper slider css-->
+    <link href="/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+
+    {{ include('layout/css.html.twig') }}
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-example" class="ribbon-box">
+<span class="ribbon-three ribbon-three-primary"><span>Démo</span></span>
+{# <div class="card ribbon-box border shadow-none mb-lg-0">
+    <div class="card-body text-muted">
+        <span class="ribbon-three ribbon-three-primary"><span>Primary</span></span>
+        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac, commodo dapibus odio. Vivamus pretium nec odio cursus.</p>
+    </div>
+</div> #}
+    <div id="subscribeModals" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-lg-7">
+                        <div class="modal-body p-5">
+                            {# <h2 class="lh-base">Abonnez-vous dès maintenant pour obtenir <span class="text-danger">20% de réduction</span> sur les expériences!</h2>
+                            <p class="text-muted mb-4">Un pari gratuit est un pari fourni par un site de paris pour qu'un client puisse le placer et ensuite bénéficier des gains. Les paris gratuits sont couramment utilisés comme offres de bienvenue.</p>
+                            <div class="input-group mb-3">
+
+                                <input type="text" class="form-control" placeholder="Entrez votre email" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <button class="btn btn-primary" type="button" id="button-addon1">Souscrire maintenant</button>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">En vous abonnant à une chaîne ou un utilisateur particulier sur YouTube, vous pouvez recevoir des mises à jour instantanées.</label>
+                            </div> #}
+                            <h2 class="lh-base">Le site est en cours de <strong style="color:#40bb82">développement</strong></h2>
+                            <p class="text-muted mb-4">Ceci est une démo. Si le projet vous intéresse, n'hésitez pas à nous contacter. Nous serions ravis d'échanger avec vous.</p>
+                            <div class="input-group mb-3">
+
+                                <a href="mailto:contact@konexty.com" class="btn btn-primary" type="button" id="button-addon1">Envoyer un message</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="subscribe-modals-cover h-100">
+                            <img src="/images/auth-one-bg.jpg" alt="" class="h-100 w-100 object-cover" style="clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Begin page -->
+    <div class="layout-wrapper landing">
+        <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="50">
+                    <img src="/images/logo-light.png" class="card-logo card-logo-light" alt="logo light" height="50">
+                    {# <h3 class="text-white">KONEXTY</h3> #}
+                </a>
+                <button class="navbar-toggler py-0 fs-20 text-body" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#hero">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features">Fonctionnalités</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#plans">Offres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reviews">Avis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">À Propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+
+                    <div class="">
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" class="btn btn-link fw-medium text-decoration-none text-dark">Déconnexion</a>
+                            <a href="{{ path('dashboard') }}" class="btn btn-primary">Tableau de bord</a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="btn btn-link fw-medium text-decoration-none text-dark">S'identifier</a>
+                            <a href="{{ path('app_register') }}" class="btn btn-primary">S'inscrire</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <!-- end navbar -->
+        <div class="vertical-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
+
+        <!-- start hero section -->
+        <section class="section pb-0 hero-section" id="hero">
+            <div class="bg-overlay bg-overlay-pattern"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-sm-10">
+                        <div class="text-center mt-lg-5 pt-5">
+                            <h1 class="display-6 fw-semibold mb-3 lh-base">La meilleure façon de gérer votre CVthéque avec 
+                                <span class="text-primary">
+                                <img src="/images/logo-text-light.png" class="card-logo card-logo-light d-inline" alt="logo light" style="padding-bottom: 7px;" height="80"> 
+                            </span></h1>
+                            <p class="lead text-muted lh-base">
+                                Konexty a pour objectif de simplifier le processus de recrutement en utilisant une base de données de candidats. 
+                                <br><br>
+                                Ce logiciel gère les interactions avec les candidats. Publication d'offres d'emploi, réception et tri des CV, entretiens, etc.
+                                <br><br>
+                                Ce logiciel est la solution pour un recrutement efficace. Son utilisation permet notamment de réduire les délais de recrutement en facilitant le sourcing.
+                            </p>
+
+                            <div class="d-flex gap-2 justify-content-center mt-4">
+                                <a href="/register" class="btn btn-primary">Commencer <i class="ri-arrow-right-line align-middle ms-1"></i></a>
+                                <a href="#plans" class="btn btn-soft-primary">Voir les plans <i class="ri-eye-line align-middle ms-1"></i></a>
+                            </div>
+                        </div>
+                        <div class="mt-4 mt-sm-5 pt-sm-5 mb-sm-n5 demo-carousel">
+                            <div class="demo-img-patten-top d-none d-sm-block">
+                                <img src="/images/landing/img-pattern.png" class="d-block img-fluid" alt="...">
+                            </div>
+                            <div class="demo-img-patten-bottom d-none d-sm-block">
+                                <img src="/images/landing/img-pattern.png" class="d-block img-fluid" alt="...">
+                            </div>
+                            <div class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner shadow-lg p-2 bg-white rounded">
+                                    <div class="carousel-item active" data-bs-interval="2000">
+                                        <img src="/images/demos/default.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/saas.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/material.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/minimal.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/creative.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/modern.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/images/demos/interactive.png" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+            <div class="position-absolute start-0 end-0 bottom-0 hero-shape-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
+                    <g mask="url(&quot;#SvgjsMask1003&quot;)" fill="none">
+                        <path d="M 0,118 C 288,98.6 1152,40.4 1440,21L1440 140L0 140z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <!-- end shape -->
+        </section>
+        <!-- end hero section -->
+        
+        {#  QUAND ON AURA DES CLIENTS ^^
+        <!-- start client section -->
+        <div class="pt-5 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="text-center mt-5">
+                            <h5 class="fs-20">Trusted <span class="text-primary text-decoration-underline">by</span> the world's best</h5>
+
+                            <!-- Swiper -->
+                            <div class="swiper trusted-client-slider mt-sm-5 mt-4 mb-sm-5 mb-4" dir="ltr">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/amazon.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/walmart.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/lenovo.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/paypal.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/shopify.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="client-images">
+                                            <img src="/images/clients/verizon.svg" alt="client-img" class="mx-auto img-fluid d-block">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end client section --> #}
+
+        <!-- start services -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h1 class="mb-3 ff-secondary fw-semibold lh-base">Un plan d'intégration ou onboarding</h1>
+                            <p class="text-muted">Un livret d'accueil pour un outil RH efficace de communication interne. Il contient toutes les informations pertinentes et importantes pour une bonne intégration au sein de l'équipe et de l'entreprise en général.</p>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+
+                <div class="row g-3">
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-newspaper-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Gestion des candidatures</h5>
+                                <p class="text-muted my-3 ff-secondary">Ce logiciel gère les interactions avec les candidats. Publication d'offres d'emploi, réception et tri des CV, entretiens, etc., ce logiciel est la solution pour un recrutement efficace. Son utilisation permet notamment de réduire les délais de recrutement en facilitant le sourcing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-file-user-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Fiche de poste</h5>
+                                <p class="text-muted my-3 ff-secondary">Cette fiche de poste présente la vision complète du poste de travail (rôle, missions et responsabilités), la situation hiérarchique du salarié et autres informations pertinentes à communiquer au personnel sur leurs fonctions..</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-calendar-event-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Gestion des congés et des absences</h5>
+                                <p class="text-muted my-3 ff-secondary">Cet outil facilitent les demandes de congés en vérifiant le solde disponible et garantissent la fiabilité des informations communiquées pour établir le bulletin de salaire.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-time-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Temps de travail des salariés</h5>
+                                <p class="text-muted my-3 ff-secondary">Optimiser la gestion des horaires de travail, vous retracez le temps alloué à un projet, à une équipe ou à un client.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-map-pin-user-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">L'entretien annuel d'évaluation</h5>
+                                <p class="text-muted my-3 ff-secondary">cet outil de gestion des entretiens annuels centralisent les grilles d'entretien, l'historique des comptes-rendus et les évaluations antérieures.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-heart-add-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Améliorer la qualité de vie au travail des salariés</h5>
+                                <p class="text-muted my-3 ff-secondary">Des programmes de coaching pour aider les managers à accompagner leurs équipes favorisent un environnement de travail positif.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-tools-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Gestion prévisionnelle des emplois et des compétences</h5>
+                                <p class="text-muted my-3 ff-secondary">L'objectif est d'anticiper le développement des ressources humaines de l'entreprise à court ou moyen terme en puisant dans ses propres ressources.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-home-gear-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Plan de développement des compétences</h5>
+                                <p class="text-muted my-3 ff-secondary">Répertoriez toutes les initiatives de formation mises en œuvre par l'employeur pour ses employés. Il inclut les formations réalisées, programmées et envisagées.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="d-flex p-3">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-sm icon-effect">
+                                    <div class="avatar-title bg-transparent text-primary rounded-circle">
+                                        <i class="ri-global-line fs-36"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fs-18">Transformations numériques de l'entreprise</h5>
+                                <p class="text-muted my-3 ff-secondary">Gagner du temps sur certaines manipulations, d'automatiser les calculs et améliorer la productivité de l'équipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end services -->
+
+        <!-- start features -->
+        <section class="section bg-light py-5" id="features">
+            <div class="container">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-6 col-sm-7 mx-auto">
+                        <div>
+                            <img src="/images/landing/features/img-1.png" alt="" class="img-fluid mx-auto">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="text-muted">
+                            <div class="avatar-sm icon-effect mb-4">
+                                <div class="avatar-title bg-transparent rounded-circle text-primary h1">
+                                    <i class="ri-collage-line fs-36"></i>
+                                </div>
+                            </div>
+                            <h3 class="mb-3 fs-20">Des notifications et une messagerie instantanée</h3>
+                            <p class="mb-4 ff-secondary fs-16">
+                                Permet de communiquer en direct par messages écrits avec d’autres personnes en ligne. Cet outil est pratique pour échanger des fichiers et informations rapidement et fluidifier la prise de décisions.
+                                <br><br>
+                                Les notifications permettent de recevoir des alertes en temps réel sur les événements importants de l'entreprise.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end features -->
+
+        <!-- start cta -->
+        <section class="py-5 bg-primary position-relative bg-opacity-50">
+            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
+            <div class="container">
+                <div class="row align-items-center gy-4">
+                    <div class="col-sm">
+                        <div>
+                            <h3 class="text-white mb-0 fw-semibold">Structurez les étapes de recrutement et améliorer l'expérience des candidats tout au long de leur parcours</h3>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-sm-auto">
+                        <div>
+                            <a href="#plans" class="btn bg-gradient btn-danger">Essayer <i class="ri-arrow-right-circle-line align-middle me-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end cta -->
+
+        <!-- start features -->
+        <section class="section">
+            <div class="container">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <div class="text-muted">
+                            <h5 class="fs-12 text-uppercase text-primary">Conception</h5>
+                            <h4 class="mb-3">Tableaux de bord performant</h4>
+                            <p class="mb-4 ff-secondary">
+                                Naviguez avec aisance à travers des interfaces utilisateur intuitives, simplifiant chaque interaction. 
+                                <br>
+                                Découvrez la puissance de la réactivité et de l'intuitivité. Adoptez notre tableau de bord pour une gestion simplifiée et une expérience utilisateur inégalée. Soyez aux commandes, où que vous soyez.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="vstack gap-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-2">
+                                                <div class="avatar-xs icon-effect">
+                                                    <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                        <i class="ri-check-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="fs-14 mb-0">Gestions des tâches</h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-2">
+                                                <div class="avatar-xs icon-effect">
+                                                    <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                        <i class="ri-check-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="fs-14 mb-0">Analyses</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="vstack gap-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-2">
+                                                <div class="avatar-xs icon-effect">
+                                                    <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                        <i class="ri-check-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="fs-14 mb-0">Calendrier</h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-2">
+                                                <div class="avatar-xs icon-effect">
+                                                    <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                        <i class="ri-check-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 class="fs-14 mb-0">Messagerie</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-6 col-sm-7 col-10 ms-auto order-1 order-lg-2">
+                        <div>
+                            <img src="/images/landing/features/img-2.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end features -->
+
+        <!-- start plan -->
+        <section class="section bg-light" id="plans">
+            <div class="bg-overlay bg-overlay-pattern"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h3 class="mb-3 fw-semibold">Choisissez le plan qui vous convient</h3>
+                            <p class="text-muted mb-4">Tarification simple. Pas de frais cachés. Fonctionnalités avancées pour votre entreprise.</p>
+
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div>
+                                    <h5 class="fs-14 mb-0">Mois</h5>
+                                </div>
+                                <div class="form-check form-switch fs-20 ms-3 " onclick="check()">
+                                    <input class="form-check-input" type="checkbox" id="plan-switch">
+                                    <label class="form-check-label" for="plan-switch"></label>
+                                </div>
+                                <div>
+                                    <h5 class="fs-14 mb-0">Annuel <span class="badge badge-soft-success">Économisez 20%</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+
+                <!-- end row -->
+
+                <div class="row gy-4">
+                    <div class="col-lg-4">
+                        <div class="card plan-box mb-0">
+                            <div class="card-body p-4 m-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 fw-semibold">Plan de base</h5>
+                                        <p class="text-muted mb-0">Pour les start-ups</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <div class="avatar-title bg-light rounded-circle text-primary">
+                                            <i class="ri-book-mark-line fs-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="py-4 text-center">
+                                    <h1 class="month"><sup><small>€</small></sup><span class="ff-secondary fw-bold">19</span> <span class="fs-13 text-muted">/Mois</span></h1>
+                                    <h1 class="annual"><sup><small>€</small></sup><span class="ff-secondary fw-bold">182</span> <span class="fs-13 text-muted">/An</span></h1>
+                                </div>
+
+                                <div>
+                                    <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Jusqu'à <b>3</b> utilisateurs
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Jusqu'à <b>300</b> candidats
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Stockage document <b>100 GB</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Support <b>24/7</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Création d'équipe
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Création de candidature
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Messagerie interne
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-4">
+                                        <a href="javascript:void(0);" class="btn btn-soft-primary w-100">Commencer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-4">
+                        <div class="card plan-box mb-0 ribbon-box right">
+                            <div class="card-body p-4 m-2">
+                                <div class="ribbon-two ribbon-two-danger"><span>Populaire</span></div>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 fw-semibold">Pro Business</h5>
+                                        <p class="text-muted mb-0">Plans professionnels</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <div class="avatar-title bg-light rounded-circle text-primary">
+                                            <i class="ri-medal-fill fs-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="py-4 text-center">
+                                    <h1 class="month"><sup><small>€</small></sup><span class="ff-secondary fw-bold">49</span> <span class="fs-13 text-muted">/Mois</span></h1>
+                                    <h1 class="annual"><sup><small>€</small></sup><span class="ff-secondary fw-bold">470</span> <span class="fs-13 text-muted">/An</span></h1>
+                                </div>
+
+                                <div>
+                                    <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Jusqu'à <b>15</b> utilisateurs
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Jusqu'à <b>1 000</b> candidats
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Stockage document <b>500 GB</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Support <b>24/7</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <b>3</b> création d'équipe
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Création de candidature
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-danger me-1">
+                                                    <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Messagerie interne
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-4">
+                                        <a href="javascript:void(0);" class="btn btn-soft-primary w-100">Commencer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-4">
+                        <div class="card plan-box mb-0">
+                            <div class="card-body p-4 m-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 fw-semibold">Plan Premium</h5>
+                                        <p class="text-muted mb-0">Entreprises de grande envergure</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <div class="avatar-title bg-light rounded-circle text-primary">
+                                            <i class="ri-stack-fill fs-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="py-4 text-center">
+                                    <h1 class="month"><sup><small>€</small></sup><span class="ff-secondary fw-bold">79</span> <span class="fs-13 text-muted">/Mois</span></h1>
+                                    <h1 class="annual"><sup><small>€</small></sup><span class="ff-secondary fw-bold">758</span> <span class="fs-13 text-muted">/An</span></h1>
+                                </div>
+
+                                <div>
+                                    <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Utilisateurs <b>illimités</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Candidats <b>illimités</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Stockage <b>illimité</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Support <b>24/7</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    création d'équipe <b>illimitées</b>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Création de candidature
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Messagerie interne
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-4">
+                                        <a href="javascript:void(0);" class="btn btn-soft-primary w-100">Commencer</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end plan -->
+
+        <!-- start faqs -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h3 class="mb-3 fw-semibold">Questions fréquemment posées</h3>
+                            <p class="text-muted mb-4 ff-secondary">Si vous ne trouvez pas la réponse à votre question dans notre FAQ, vous pouvez toujours nous contacter par e-mail. Nous vous répondrons rapidement !</p>
+                            <div class="hstack gap-2 justify-content-center">
+                                <button type="button" class="btn btn-primary btn-label rounded-pill" onclick="window.location.href='mailto:contact@ramty.com'"><i class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"></i> Nous contacter par e-mail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row g-lg-5 g-4">
+                    <div class="col-lg-6">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0 me-1">
+                                <i class="ri-question-line fs-24 align-middle text-primary me-1"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="mb-0 fw-semibold">Questions générales</h5>
+                            </div>
+                        </div>
+                        <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box" id="genques-accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="genques-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseOne" aria-expanded="false" aria-controls="genques-collapseOne">
+                                        Quels indicateurs clés sont disponibles sur le tableau de bord et comment peuvent-ils être utilisés pour évaluer la performance globale des ressources humaines ?
+                                    </button>
+                                </h2>
+                                <div id="genques-collapseOne" class="accordion-collapse collapse" aria-labelledby="genques-headingOne" data-bs-parent="#genques-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Le tableau de bord propose des indicateurs tels que le taux de rotation, la productivité par employé, les coûts de recrutement, et d'autres métriques clés. Ces données peuvent être utilisées pour évaluer la performance globale des RH en identifiant les tendances et en prenant des décisions informées.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="genques-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseTwo" aria-expanded="false" aria-controls="genques-collapseTwo">
+                                        Comment le tableau de bord facilite-t-il la prise de décision en matière de gestion des talents et de planification des effectifs ?
+                                    </button>
+                                </h2>
+                                <div id="genques-collapseTwo" class="accordion-collapse collapse" aria-labelledby="genques-headingTwo" data-bs-parent="#genques-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        L'outil fournit des informations détaillées sur les compétences disponibles, les lacunes potentielles, les performances individuelles et les tendances de recrutement. Cela permet aux responsables RH de prendre des décisions éclairées concernant la gestion des talents et la planification des effectifs.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="genques-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseThree" aria-expanded="false" aria-controls="genques-collapseThree">
+                                        Quels sont les outils d'analyse disponibles sur le tableau de bord pour examiner les tendances en matière d'absentéisme, de productivité et d'engagement des employés ?
+                                    </button>
+                                </h2>
+                                <div id="genques-collapseThree" class="accordion-collapse collapse" aria-labelledby="genques-headingThree" data-bs-parent="#genques-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Le tableau de bord propose des outils d'analyse avancés qui permettent de suivre les tendances d'absentéisme, d'analyser les facteurs de productivité et de mesurer l'engagement des employés. Ces analyses aident à identifier les domaines nécessitant une attention particulière.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="genques-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseFour" aria-expanded="false" aria-controls="genques-collapseFour">
+                                        Comment le tableau de bord facilite-t-il la communication interne au sein de l'équipe RH et avec d'autres départements de l'entreprise ?
+                                    </button>
+                                </h2>
+                                <div id="genques-collapseFour" class="accordion-collapse collapse" aria-labelledby="genques-headingFour" data-bs-parent="#genques-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Le tableau de bord intègre des fonctionnalités de partage d'informations en temps réel, de rapports personnalisés et de visualisations interactives. Cela facilite la communication entre les membres de l'équipe RH et permet le partage efficace d'informations avec d'autres départements.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end accordion-->
+
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-6">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0 me-1">
+                                <i class="ri-shield-keyhole-line fs-24 align-middle text-primary me-1"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="mb-0 fw-semibold">Confidentialité &amp; Sécurité</h5>
+                            </div>
+                        </div>
+
+                        <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box" id="privacy-accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="privacy-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseOne" aria-expanded="false" aria-controls="privacy-collapseOne">
+                                        Quelles mesures de sécurité sont en place pour garantir la confidentialité des données des employés sur le tableau de bord de gestion des ressources humaines ?
+                                    </button>
+                                </h2>
+                                <div id="privacy-collapseOne" class="accordion-collapse collapse" aria-labelledby="privacy-headingOne" data-bs-parent="#privacy-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Notre tableau de bord utilise un cryptage avancé pour sécuriser les données des employés. L'accès est limité aux utilisateurs autorisés via des identifiants sécurisés, et des audits réguliers sont effectués pour garantir la conformité aux normes de sécurité.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="privacy-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseTwo" aria-expanded="false" aria-controls="privacy-collapseTwo">
+                                        Comment l'outil assure-t-il la conformité aux réglementations en matière de protection des données, telles que le RGPD, et quels contrôles de confidentialité sont mis en œuvre ?
+                                    </button>
+                                </h2>
+                                <div id="privacy-collapseTwo" class="accordion-collapse collapse" aria-labelledby="privacy-headingTwo" data-bs-parent="#privacy-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Le tableau de bord est conçu pour être conforme aux réglementations en vigueur, y compris le RGPD. Des fonctionnalités telles que la gestion des consentements, la pseudonymisation des données et des options de confidentialité avancées sont intégrées pour garantir la conformité.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="privacy-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseThree" aria-expanded="false" aria-controls="privacy-collapseThree">
+                                        Quels sont les mécanismes de contrôle d'accès mis en place pour s'assurer que seules les personnes autorisées ont accès aux données sensibles sur le tableau de bord RH ?
+                                    </button>
+                                </h2>
+                                <div id="privacy-collapseThree" class="accordion-collapse collapse" aria-labelledby="privacy-headingThree" data-bs-parent="#privacy-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Le tableau de bord utilise des contrôles d'accès robustes, tels que des permissions basées sur les rôles, pour garantir que seules les personnes autorisées ont accès aux informations sensibles. Les audits de sécurité réguliers sont effectués pour détecter et corriger toute anomalie.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="privacy-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseFour" aria-expanded="false" aria-controls="privacy-collapseFour">
+                                        Comment le tableau de bord gère-t-il les risques liés aux fuites de données et quelles procédures sont en place en cas d'incident de sécurité ?
+                                    </button>
+                                </h2>
+                                <div id="privacy-collapseFour" class="accordion-collapse collapse" aria-labelledby="privacy-headingFour" data-bs-parent="#privacy-accordion">
+                                    <div class="accordion-body ff-secondary">
+                                        Notre tableau de bord intègre des fonctionnalités avancées de détection des menaces et de prévention des fuites de données. En cas d'incident de sécurité, des procédures de réponse aux incidents sont immédiatement déclenchées, impliquant la notification des parties concernées et la mise en œuvre de mesures correctives.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end accordion-->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end faqs -->
+
+        <!-- start review -->
+        <section class="section bg-primary" id="reviews">
+            <div class="bg-overlay bg-overlay-pattern"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="text-center">
+                            <div>
+                                <i class="ri-double-quotes-l text-success display-3"></i>
+                            </div>
+                            <h4 class="text-white mb-5">Satisfactions clients</h4>
+
+                            <!-- Swiper -->
+                            <div class="swiper client-review-swiper rounded" dir="ltr">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="row justify-content-center">
+                                            <div class="col-10">
+                                                <div class="text-white-50">
+                                                    <p class="fs-20 ff-secondary mb-4">Je donne 5 étoiles. Le logiciel est génial et tout le monde y a intégré tout ce dont ils ont besoin. Les demandes futures ne devraient pas affecter l'état actuel du logiciel.</p>
+
+                                                    <div>
+                                                        <h5 class="text-white">Florent</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- fin de la diapositive -->
+                                    <div class="swiper-slide">
+                                        <div class="row justify-content-center">
+                                            <div class="col-10">
+                                                <div class="text-white-50">
+                                                    <p class="fs-20 ff-secondary mb-4">Support incroyable. J'ai eu quelques problèmes lors de la configuration en raison de mon appareil, l'équipe de support m'a aidé à les résoudre en une journée. Tout semble propre et bien. Hautement recommandé!</p>
+
+                                                    <div>
+                                                        <h5 class="text-white">Sandrine</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end slide -->
+                                </div>
+                                <div class="swiper-button-next bg-white rounded-circle"></div>
+                                <div class="swiper-button-prev bg-white rounded-circle"></div>
+                                <div class="swiper-pagination position-relative mt-2"></div>
+                            </div>
+                            <!-- end slider -->
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end review -->
+
+        <!-- start counter -->
+        {# <section class="py-5 position-relative bg-light">
+            <div class="container">
+                <div class="row text-center gy-4">
+                    <div class="col-lg-3 col-6">
+                        <div>
+                            <h2 class="mb-2"><span class="counter-value" data-target="100">0</span>+</h2>
+                            <div class="text-muted">Projects Completed</div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-lg-3 col-6">
+                        <div>
+                            <h2 class="mb-2"><span class="counter-value" data-target="24">0</span></h2>
+                            <div class="text-muted">Win Awards</div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-lg-3 col-6">
+                        <div>
+                            <h2 class="mb-2"><span class="counter-value" data-target="20.3">0</span>k</h2>
+                            <div class="text-muted">Satisfied Clients</div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-3 col-6">
+                        <div>
+                            <h2 class="mb-2"><span class="counter-value" data-target="50">0</span></h2>
+                            <div class="text-muted">Employees</div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section> #}
+        <!-- end counter -->
+
+        <!-- start Work Process -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h3 class="mb-3 fw-semibold">Notre processus de travail</h3>
+                            <p class="text-muted mb-4 ff-secondary">
+                                Découvrez une nouvelle ère de gestion des <strong>ressources humaines</strong> avec notre logiciel innovant. Notre approche révolutionnaire dans le domaine des logiciels de <strong>ressources humaines</strong> offre une solution complète et conviviale pour simplifier vos opérations RH. Du suivi des présences à la gestion des performances, notre logiciel rationalise chaque aspect du cycle de vie des employés. Grâce à une interface intuitive, vous pouvez facilement automatiser les processus de recrutement, gérer les évaluations de performance, et optimiser la gestion des congés. Notre logiciel s'adapte à vos besoins spécifiques, offrant une flexibilité inégalée dans la personnalisation des fonctionnalités. Libérez-vous des tâches administratives fastidieuses et concentrez-vous sur ce qui compte vraiment - le développement et le bien-être de votre équipe. Optez pour l'efficacité et l'innovation avec notre logiciel de <strong>ressources humaines</strong>, redéfinissez la gestion du capital humain au sein de votre entreprise.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row text-center">
+                    <div class="col-lg-4">
+                        <div class="process-card mt-4">
+                            <div class="process-arrow-img d-none d-lg-block">
+                                <img src="/images/landing/process-arrow-img.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="avatar-sm icon-effect mx-auto mb-4">
+                                <div class="avatar-title bg-transparent text-primary rounded-circle h1">
+                                    <i class="ri-quill-pen-line"></i>
+                                </div>
+                            </div>
+
+                            <h5>Dites-nous ce dont vous avez besoin</h5>
+                            <p class="text-muted ff-secondary">La profession, l'employeur et votre désir de laisser votre empreinte.<br>Demandez des modules supplémentaires.</p>
+                        </div>
+                    </div>
+                    <!-- fin de la colonne -->
+                    <div class="col-lg-4">
+                        <div class="process-card mt-4">
+                            <div class="process-arrow-img d-none d-lg-block">
+                                <img src="/images/landing/process-arrow-img.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="avatar-sm icon-effect mx-auto mb-4">
+                                <div class="avatar-title bg-transparent text-primary rounded-circle h1">
+                                    <i class="ri-user-follow-line"></i>
+                                </div>
+                            </div>
+
+                            <h5>Obtenez des devis gratuits</h5>
+                            <p class="text-muted ff-secondary">L'aspect le plus important de la beauté était, par conséquent, une partie inhérente.</p>
+                        </div>
+                    </div>
+                    <!-- fin de la colonne -->
+                    <div class="col-lg-4">
+                        <div class="process-card mt-4">
+                            <div class="avatar-sm icon-effect mx-auto mb-4">
+                                <div class="avatar-title bg-transparent text-primary rounded-circle h1">
+                                    <i class="ri-book-mark-line"></i>
+                                </div>
+                            </div>
+
+                            <h5>Livrez un produit de haute qualité</h5>
+                            <p class="text-muted ff-secondary">Nous apprenons rapidement à craindre et à éviter automatiquement ce qui est potentiellement dangereux.</p>
+                        </div>
+                    </div>
+                    <!-- fin de la colonne -->
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end Work Process -->
+
+        <!-- start team -->
+        <section class="section bg-light" id="team">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h3 class="mb-3 fw-semibold">À <span class="text-primary">Propos</span></h3>
+                            <p class="text-muted mb-4 ff-secondary">
+                                Découvrez un développeur dynamique et passionné par l'innovation, déterminé à simplifier la vie des entreprises. Fort d'une expertise technique approfondie, je mets tout en œuvre pour créer des solutions informatiques intuitives et performantes. Mon objectif est d'alléger le fardeau opérationnel des entreprises en développant des applications et des systèmes sur mesure, conçus pour améliorer l'efficacité et la productivité. Je crois en la puissance de la technologie pour résoudre les défis commerciaux, et je m'engage à fournir des solutions qui anticipent les besoins de votre entreprise. Faites équipe avec moi pour rendre la technologie un atout stratégique au service de la croissance et de la facilité opérationnelle de votre entreprise.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <div class="row">
+                    {# <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <div class="avatar-xl mx-auto mb-4 position-relative">
+                                    <img src="/images/users/avatar-2.jpg" alt="" class="img-fluid rounded-circle">
+                                    <a href="apps-mailbox" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
+                                        <div class="avatar-title bg-transparent">
+                                            <i class="ri-mail-fill align-bottom"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- end card body -->
+                                <h5 class="mb-1"><a href="pages-profile" class="text-body">Nancy Martino</a></h5>
+                                <p class="text-muted mb-0 ff-secondary">Team Leader</p>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <div class="avatar-xl mx-auto mb-4 position-relative">
+                                    <img src="/images/users/avatar-10.jpg" alt="" class="img-fluid rounded-circle">
+                                    <a href="apps-mailbox" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
+                                        <div class="avatar-title bg-transparent">
+                                            <i class="ri-mail-fill align-bottom"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- end card body -->
+                                <h5 class="mb-1"><a href="pages-profile" class="text-body">Sandrine</a></h5>
+                                <p class="text-muted mb-0 ff-secondary">Développeuse full-stack <br> designer</p>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <div class="avatar-xl mx-auto mb-4 position-relative">
+                                    <img src="/images/users/avatar-3.jpg" alt="" class="img-fluid rounded-circle">
+                                    <a href="apps-mailbox" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
+                                        <div class="avatar-title bg-transparent">
+                                            <i class="ri-mail-fill align-bottom"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- end card body -->
+                                <h5 class="mb-1"><a href="pages-profile" class="text-body">Antoine</a></h5>
+                                <p class="text-muted mb-0 ff-secondary">Chef de projet <br> développeur full-stack</p>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <div class="avatar-xl mx-auto mb-4 position-relative">
+                                    <img src="/images/users/avatar-8.jpg" alt="" class="img-fluid rounded-circle">
+                                    <a href="apps-mailbox" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
+                                        <div class="avatar-title bg-transparent">
+                                            <i class="ri-mail-fill align-bottom"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- end card body -->
+                                <h5 class="mb-1"><a href="pages-profile" class="text-body">Donald Palmer</a></h5>
+                                <p class="text-muted mb-0 ff-secondary">UI/UX Designer</p>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col --> #}
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <div class="avatar-xl mx-auto mb-4 position-relative">
+                                    <img src="/images/users/avatar-3.jpg" alt="" class="img-fluid rounded-circle">
+                                    <a href="apps-mailbox" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle avatar-xs">
+                                        <div class="avatar-title bg-transparent">
+                                            <i class="ri-mail-fill align-bottom"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- end card body -->
+                                <h5 class="mb-1"><a href="pages-profile" class="text-body">Antoine</a></h5>
+                                <p class="text-muted mb-0 ff-secondary">Passionnés <br> par le développement</p>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end team -->
+
+        <!-- start contact -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h3 class="mb-3 fw-semibold">Contactez-nous</h3>
+                            <p class="text-muted mb-4 ff-secondary">Nous excellons dans la création d'idées innovantes, mais nous comprenons également qu'un concept intelligent doit être soutenu par des résultats mesurables.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- fin de la ligne -->
+
+                <div class="row gy-4">
+                    <div class="col-lg-4">
+                        <div>
+                            <div class="mt-4">
+                                <h5 class="fs-13 text-muted text-uppercase">Adresse du bureau :</h5>
+                                <div class="ff-secondary fw-semibold">11 rue des meilleurs,</div>
+                                <div class="ff-secondary fw-semibold">14000, <br />Caen</div>
+                            </div>
+                            <div class="mt-4">
+                                <h5 class="fs-13 text-muted text-uppercase">Heures de travail :</h5>
+                                <div class="ff-secondary fw-semibold">Du lundi au vendredi</div>
+                                <div class="ff-secondary fw-semibold">De 9h00 à 18h00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fin de la colonne -->
+
+                    <div class="col-lg-8">
+                        <div>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="name" class="form-label fs-13">Nom</label>
+                                            <input name="name" id="name" type="text" class="form-control bg-light border-light" placeholder="Votre nom*">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="email" class="form-label fs-13">E-mail</label>
+                                            <input name="email" id="email" type="email" class="form-control bg-light border-light" placeholder="Votre e-mail*">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-4">
+                                            <label for="subject" class="form-label fs-13">Sujet</label>
+                                            <input type="text" class="form-control bg-light border-light" id="subject" name="subject" placeholder="Votre sujet.." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="comments" class="form-label fs-13">Message</label>
+                                            <textarea name="comments" id="comments" rows="3" class="form-control bg-light border-light" placeholder="Votre message..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-end">
+                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Envoyer le message">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end contact -->
+
+        <!-- start cta -->
+        <section class="py-5 bg-primary position-relative bg-opacity-50">
+            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
+            <div class="container">
+                <div class="row align-items-center gy-4">
+                    <div class="col-sm">
+                        <div>
+                            <h3 class="text-white mb-0 fw-semibold">Structurez les étapes de recrutement et améliorer l'expérience des candidats tout au long de leur parcours</h3>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-sm-auto">
+                        <div>
+                            <a href="#plans" class="btn bg-gradient btn-danger">Essayer <i class="ri-arrow-right-circle-line align-middle me-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end cta -->
+
+        <!-- Start footer -->
+        <footer class="custom-footer bg-dark py-5 position-relative">
+            <div class="container">
+                {# <div class="row">
+                    <div class="col-lg-4 mt-4">
+                        <div>
+                            <div>
+                                RAMTY
+                            </div>
+                            <div class="mt-2 fs-14">
+                                <p class="ff-secondary">Un outil RH pour le recrutement et la prise de poste des salariés</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 ms-lg-auto">
+                        <div class="row">
+                            <div class="col-sm-4 mt-4">
+                                <h5 class="text-white mb-0">Company</h5>
+                                <div class="text-muted mt-3">
+                                    <ul class="list-unstyled ff-secondary footer-list">
+                                        <li><a href="pages-profile">About Us</a></li>
+                                        <li><a href="pages-gallery">Gallery</a></li>
+                                        <li><a href="apps-projects-overview">Projects</a></li>
+                                        <li><a href="pages-timeline">Timeline</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-4">
+                                <h5 class="text-white mb-0">Apps Pages</h5>
+                                <div class="text-muted mt-3">
+                                    <ul class="list-unstyled ff-secondary footer-list">
+                                        <li><a href="pages-pricing">Calendar</a></li>
+                                        <li><a href="apps-mailbox">Mailbox</a></li>
+                                        <li><a href="apps-chat">Chat</a></li>
+                                        <li><a href="apps-crm-deals">Deals</a></li>
+                                        <li><a href="apps-tasks-kanban">Kanban Board</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mt-4">
+                                <h5 class="text-white mb-0">Support</h5>
+                                <div class="text-muted mt-3">
+                                    <ul class="list-unstyled ff-secondary footer-list">
+                                        <li><a href="pages-faqs">FAQ</a></li>
+                                        <li><a href="pages-faqs">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> #}
+
+                <div class="row text-center text-sm-start align-items-center mt-2">
+                    <div class="col-sm-6">
+
+                        <div>
+                            <p class="copy-rights mb-0">
+                                <script> document.write(new Date().getFullYear()) </script> © KONEXTY
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end mt-3 mt-sm-0">
+                            <ul class="list-inline mb-0 footer-social-link">
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                        <div class="avatar-title rounded-circle">
+                                            <i class="ri-facebook-fill"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                        <div class="avatar-title rounded-circle">
+                                            <i class="ri-twitter-line"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                        <div class="avatar-title rounded-circle">
+                                            <i class="ri-linkedin-fill"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                        <div class="avatar-title rounded-circle">
+                                            <i class="ri-youtube-line"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+
+
+        <!--start back-to-top-->
+        <button onclick="topFunction()" class="btn btn-danger btn-icon landing-back-top" id="back-to-top">
+            <i class="ri-arrow-up-line"></i>
+        </button>
+        <!--end back-to-top-->
+
+    </div>
+    <!-- end layout wrapper -->
+
+
+    {{ include('layout/js.html.twig') }}
+
+    <script>
+        // attendre 5 sec et afficher la modale qui a l'id "subscribeModals"
+        setTimeout(function() {
+            $('#subscribeModals').modal('show');
+        }, 3000);
+
+        // tous les a a part ceux de la navbar et les a de la modal
+        $('a').not('.navbar-nav a, .modal a').click(function(event) {
+            // on fait un prevent default en jquery
+            event.preventDefault();
+
+            $('#subscribeModals').modal('show');
+        });
+    </script>
+
+    <!--Swiper slider js-->
+    <script src="/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- landing init -->
+    <script src="/js/pages/landing.init.js"></script>
+</body>
+
+</html>

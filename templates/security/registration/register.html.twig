@@ -1,0 +1,221 @@
+{{ include('components/partials/main.html.twig') }}
+
+<head>
+    {{ include('layout/title.html.twig', {title: 'Inscription'}) }}
+
+    {{ include('layout/css.html.twig') }}
+</head>
+
+<body>
+    <!-- auth-page wrapper -->
+    <div class="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
+        <div class="bg-overlay"></div>
+        <!-- auth-page content -->
+        <div class="auth-page-content overflow-hidden pt-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card overflow-hidden m-0 card-bg-fill border-0 card-border-effect-none">
+                            <div class="row justify-content-center g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-lg-5 p-4 auth-one-bg h-100">
+                                        <div class="bg-overlay"></div>
+                                        <div class="position-relative h-100 d-flex flex-column">
+                                            <div class="mb-4">
+                                                <a href="/" class="d-block text-center">
+                                                    KONEXTY
+                                                </a>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <div class="mb-3">
+                                                    <i class="ri-double-quotes-l display-4 text-success"></i>
+                                                </div>
+
+                                                <div id="qoutescarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-indicators">
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                    </div>
+                                                    <div class="carousel-inner text-center text-white pb-5">
+                                                        <div class="carousel-item active">
+                                                            <p class="fs-15 fst-italic">Publication d'offres d'emploi, réception et tri des CV, entretiens, etc.</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">Calendrier pour organiser et coordonner les rendez-vous de la semaine.</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">Optimiser la gestion des horaires de travail est une autre dimension de la digitalisation.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end carousel -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="p-lg-5 p-4">
+                                        <div>
+                                            <h5 class="text-primary">Inscription</h5>
+                                            <p class="text-muted">Essayez notre plateforme gratuitement pendant 30 jours. Pas de carte de crédit requise.</p>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            {{ form_start(registrationForm, {'attr': {'class': 'needs-validation'}}) }}
+
+                                                <div class="mb-3">
+                                                    {{ form_label(registrationForm.username, "Nom d'utilisateur", {'label_attr': {'class': 'form-label'}}) }} <span class="text-danger">*</span>
+                                                    {{ form_widget(registrationForm.username, {'attr': {
+                                                        'class': 'form-control', 
+                                                        'id' : 'username' ,
+                                                        'placeholder': 'Entrez votre nom d\'utilisateur',
+                                                        'required': 'required'
+                                                    }}) }}
+                                                    <div class="invalid-feedback">
+                                                        Veuillez entrer votre nom d'utilisateur
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }} <span class="text-danger">*</span>
+                                                    {{ form_widget(registrationForm.email, {'attr': {
+                                                        'class': 'form-control', 
+                                                        'id' : 'useremail' ,
+                                                        'placeholder': 'Entrez votre adresse email',
+                                                        'required': 'required'
+                                                    }}) }}
+                                                    <div class="invalid-feedback">
+                                                        Veuillez entrer votre adresse email
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {
+                                                        'class': 'form-label', 'for' : 'password-input'
+                                                        }}) 
+                                                    }} <span class="text-danger">*</span>
+                                                    <div class="position-relative auth-pass-inputgroup">
+                                                        {{ form_widget(registrationForm.plainPassword, {'attr': {
+                                                            'class': 'form-control pe-5 password-input', 
+                                                            'id' : 'password-input',
+                                                            'pattern': '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                                                            'onpaste': 'return false',
+                                                            'placeholder': 'Entrez votre mot de passe',
+                                                            'required': 'required',
+                                                            'aria-describedby' : "passwordInput"
+                                                            }}) 
+                                                        }}
+                                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        <div class="invalid-feedback">
+                                                            Veuillez entrer votre mot de passe
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    {{ form_label(registrationForm.confirmPassword, 'Confirm Password', {'label_attr': {
+                                                        'class': 'form-label',
+                                                        'for' : 'confirm-password-input'
+                                                        }}) 
+                                                    }} <span class="text-danger">*</span>
+                                                    <div class="position-relative auth-pass-inputgroup">
+                                                        {{ form_widget(registrationForm.confirmPassword, {'attr': {
+                                                            'class': 'form-control pe-5', 
+                                                            'id' : 'confirm-password-input',
+                                                            'pattern': '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                                                            'onpaste': 'return false',
+                                                            'placeholder': 'Confirmez votre mot de passe',
+                                                            'required': 'required',
+                                                            'aria-describedby' : "passwordInput"
+                                                            }}) 
+                                                        }}
+                                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        <div class="invalid-feedback">
+                                                            Veuillez confirmer votre mot de passe
+                                                        </div>
+                                                </div>
+
+                                                <div class="mb-4 pt-4 form-check">
+                                                    {{ form_widget(registrationForm.agreeTerms, {'attr' : {
+                                                        'class' : 'pt-2 form-check-input',
+                                                        'id' : 'auth-terms-condition-check',
+                                                    }}) }} 
+                                                    <label class="form-check-label" for="auth-terms-condition-check">
+                                                        J'accepte les 
+                                                        <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">
+                                                            conditions générales d'utilisation
+                                                        </a>
+                                                    </label>
+                                                </div>
+
+                                                <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                                                    <h5 class="fs-13">Le mot de passe doit contenir :</h5>
+                                                    <p id="pass-length" class="invalid fs-12 mb-2">
+                                                        Minimum de <b>8 caractères</b>
+                                                    </p>
+                                                    <p id="pass-lower" class="invalid fs-12 mb-2">
+                                                        Au moins une lettre en <b>minuscule</b> (a-z)
+                                                    </p>
+                                                    <p id="pass-upper" class="invalid fs-12 mb-2">
+                                                        Au moins une lettre en <b>majuscule</b> (A-Z)
+                                                    </p>
+                                                    <p id="pass-number" class="invalid fs-12 mb-0">
+                                                        Au moins un <b>chiffre</b> (0-9)
+                                                    </p>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
+                                                </div>
+
+                                            {{ form_end(registrationForm) }}
+                                        </div>
+
+                                        <div class="mt-5 text-center">
+                                            <p class="mb-0">Vous avez déjà un compte ? <a href="/login" class="fw-semibold text-primary text-decoration-underline">Connexion</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end auth page content -->
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0">&copy;
+                                <script>document.write(new Date().getFullYear())</script> KONEXTY
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+    </div>
+    <!-- end auth-page-wrapper -->
+
+    {{ include('layout/js.html.twig') }}
+
+    <!-- validation init -->
+    <script src="/js/pages/form-validation.init.js"></script>
+    <!-- password create init -->
+    <script src="/js/pages/passowrd-create.init.js"></script>
+</body>
+
+</html>

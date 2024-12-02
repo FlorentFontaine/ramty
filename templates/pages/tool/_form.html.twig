@@ -1,0 +1,29 @@
+<div class="modal fade zoomIn" id="showModal{{ tool ? tool.id : tool }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="modal-header p-3 bg-soft-primary">
+                <h5 class="modal-title" id="exampleModalLabel">Créer un outilt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+            </div>
+            <form class="tablelist-form" autocomplete="off" action="" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="tasksId" name="id" value="{{ tool ? tool.id : null }}" />
+                    <div class="row g-3">
+                        <div class="col-lg-12">
+                            <label for="title-field" class="form-label">Nom</label>
+                            <input type="text" id="title-field" class="form-control" name="name" placeholder="Nom" required value="{{ tool ? tool.name : '' }}" />
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" id="close-modal" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">{{tool ? "Modifier" : "Ajouter"}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

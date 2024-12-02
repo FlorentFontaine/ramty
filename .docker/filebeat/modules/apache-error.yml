@@ -1,0 +1,6 @@
+- module: apache
+  error:
+    enabled: true
+    var.paths: ["/var/log/import/httpd-error.log"]
+
+

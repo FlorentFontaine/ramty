@@ -1,0 +1,200 @@
+<!-- ========== App Menu ========== -->
+<div class="app-menu navbar-menu border-end">
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <!-- Dark Logo-->
+        <a href="/" class="logo logo-dark">
+            <span class="logo-sm">
+                {% if app.user.compagny.name %}
+                    <h3 class="pt-4 text-dark">{{ app.user.compagny.name|first|upper }}</h3>
+                {% else %}
+                    <img src="/images/logo-.png" alt="" height="35">
+                {% endif %}
+            </span>
+            <span class="logo-lg">
+                {% if app.user.compagny.name %}
+                    <h3 class="pt-4 text-dark">{{ app.user.compagny.name }}</h3>
+                {% else %}
+                    <img src="/images/logo-dark.png" alt="" height="50">
+                {% endif %}
+            </span>
+        </a>
+        <!-- Light Logo-->
+        <a href="/" class="logo logo-light">
+            <span class="logo-sm">
+                {% if app.user.compagny.name %}
+                    <h3 class="pt-4 text-white">{{ app.user.compagny.name|first|upper }}</h3>
+                {% else %}
+                    <img src="/images/logo-sm.png" alt="" height="35">
+                {% endif %}
+            </span>
+            <span class="logo-lg">
+                {% if app.user.compagny.name %}
+                    <h3 class="pt-4 text-white">{{ app.user.compagny.name }}</h3>
+                {% else %}
+                    <img src="/images/logo-light.png" alt="" height="50">
+                {% endif %}
+            </span>
+        </a>
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+            <i class="ri-record-circle-line"></i>
+        </button>
+    </div>
+
+    <div id="scrollbar">
+        <div class="container-fluid">
+            <div id="two-column-menu">
+            </div>
+            <ul class="navbar-nav" id="navbar-nav">
+                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') == 'dashboard' %} active {% endif %}" href="{{ path("dashboard") }}">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_calendar' %} active {% endif %}" href="{{ path("app_calendar_index") }}">
+                        <i class="ri-calendar-2-line"></i> <span data-key="t-tasks">Calendrier</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_planning' %} active {% endif %}" href="{{ path("app_planning_index") }}">
+                        <i class="ri-calendar-todo-fill"></i> <span data-key="t-tasks">Planning</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_event' %} active {% endif %}" href="{{ path("app_event_index") }}">
+                        <i class="ri-ticket-2-line"></i> <span data-key="t-tasks">Événement</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_task' %} active {% endif %}" href="{{ path("app_task_index") }}">
+                        <i class="ri-task-line"></i> <span data-key="t-tasks">Tâches</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_staff' %} active {% endif %}" href="{{ path("app_staff_index") }}">
+                        <i class="ri-account-circle-line"></i> <span data-key="t-tasks">Personnel</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_research' %} active {% endif %}" href="{{ path("app_research_index") }}">
+                        <i class="ri-user-search-line"></i> <span data-key="t-tasks">Recherche</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_candidacy' %} active {% endif %}" href="{{ path("app_candidacy_index") }}">
+                        <i class="ri-file-edit-fill"></i> <span data-key="t-tasks">Candidature</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_job' %} active {% endif %}" href="{{ path("app_job_index") }}">
+                        <i class="ri-briefcase-line"></i> <span data-key="t-tasks">Métier</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_location' %} active {% endif %}" href="{{ path("app_location_index") }}">
+                        <i class="ri-community-line"></i> <span data-key="t-tasks">Site</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a 
+                        class="nav-link menu-link
+                        {% 
+                            if app.request.get('_route') starts with 'app_competence' 
+                            or app.request.get('_route') starts with 'app_sector'
+                            or app.request.get('_route') starts with 'app_criteria'
+                            or app.request.get('_route') starts with 'app_tool'
+                        %} 
+                            active
+                        {% endif %}
+                        " 
+                        href="#sidebarUI"
+                        data-bs-toggle="collapse" 
+                        role="button" 
+                        aria-expanded="{% 
+                                if app.request.get('_route') starts with 'app_competence' 
+                                or app.request.get('_route') starts with 'app_sector'
+                                or app.request.get('_route') starts with 'app_criteria'
+                                or app.request.get('_route') starts with 'app_tool'
+                            %} 
+                                true
+                            {% else %}
+                                false
+                            {% endif %}" 
+                    aria-controls="sidebarUI">
+                        <i class="ri-pencil-ruler-2-line"></i> <span data-key="t-base-ui">Caractéristique</span>
+                    </a>
+                    <div 
+                        class="collapse menu-dropdown mega-dropdown-menu
+                        {% 
+                            if app.request.get('_route') starts with 'app_competence' 
+                            or app.request.get('_route') starts with 'app_sector'
+                            or app.request.get('_route') starts with 'app_criteria'
+                            or app.request.get('_route') starts with 'app_tool'
+                        %}
+                            show
+                        {% endif %}" 
+                        id="sidebarUI"
+                        >
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ path("app_sector_index") }}" class="nav-link {% if app.request.get('_route') starts with 'app_sector' %} active {% endif %}" data-key="t-alerts">Secteur</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path("app_criteria_index") }}" class="nav-link {% if app.request.get('_route') starts with 'app_criteria' %} active {% endif %}" data-key="t-colors">Critére</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path("app_competence_index") }}" class="nav-link {% if app.request.get('_route') starts with 'app_competence' %} active {% endif %}" data-key="t-badges">Compétence</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path("app_tool_index") }}" class="nav-link {% if app.request.get('_route') starts with 'app_tool' %} active {% endif %}" data-key="t-buttons">Outils</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_document' %} active {% endif %}" href="{{ path("app_document_index") }}">
+                        <i class="ri-file-list-2-line"></i> <span data-key="t-tasks">Document</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_chat' %} active {% endif %}" href="{{ path("app_chat_index") }}">
+                        <i class="ri-chat-1-line"></i>  <span data-key="t-chat">Chat</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Administration</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_compagny' %} active {% endif %}" href="{{ path("app_compagny_index") }}">
+                        <i class="ri-home-gear-line"></i> <span data-key="t-tasks">Compagnie</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_team' %} active {% endif %}" href="{{ path("app_team_index") }}">
+                        <i class="ri-team-line"></i> <span data-key="t-tasks">Équipe</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_user' %} active {% endif %}" href="{{ path("app_user_index") }}">
+                        <i class="ri-group-line"></i> <span data-key="t-tasks">Utilisateur</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {% if app.request.get('_route') starts with 'app_config' %} active {% endif %}" href="{{ path("admin") }}">
+                        <i class="ri-settings-2-line"></i> <span data-key="t-tasks">Configuration</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+
+    <div class="sidebar-background"></div>
+</div>
+<!-- Left Sidebar End -->
+<!-- Vertical Overlay-->
+<div class="vertical-overlay"></div>

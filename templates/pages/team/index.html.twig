@@ -1,0 +1,186 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Team index{% endblock %}
+
+{% block body %}
+    <h1>Team index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.id }}</td>
+                <td>{{ team.name }}</td>
+                <td>
+                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
+                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_team_new') }}">Create new</a>
+{% endblock %} #}
+
+
+{{ include('layout/main.html.twig') }}
+
+<head>
+
+	{{ include('layout/title.html.twig', {title: 'Équipes'}) }}
+
+	{{ include('layout/css.html.twig') }}
+
+</head>
+
+<body>
+
+	<!-- Begin page -->
+	<div id="layout-wrapper">
+
+		{{ include('layout/menu.html.twig') }}
+
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+			<div class="main-content"> <div class="page-content">
+				<div class="container-fluid">
+
+					{{ include('components/partials/page-title.html.twig', {pagetitle: 'Équipes', title: 'Équipes'}) }}
+					<div class="card">
+						<div class="card-header border-0 rounded">
+							<div class="row g-2">
+								<div class="col-xl-8">
+									<div class="search-box">
+										<input type="text" class="form-control search" placeholder="Rechercher une équipe...">
+										<i class="ri-search-line search-icon"></i>
+									</div>
+								</div>
+								<!--end col-->
+								<div class="col-xxl-1 ms-auto"></div>
+								<!--end col-->
+								<div class="col-lg-auto">
+									<div class="hstack gap-2">
+										<button type="button" class="btn btn-secondary">
+											<i class="ri-equalizer-fill me-1 align-bottom"></i>
+											Rechercher</button>
+										<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeller">
+											<i class="ri-add-fill me-1 align-bottom"></i>
+											Ajouter une team</button>
+									</div>
+								</div>
+								<!--end col-->
+							</div>
+							<!--end row-->
+						</div>
+					</div>
+
+					<div class="row mt-4">
+						{% if teams|length == 0 %}
+							<div class="col-12">
+								<div class="noresult">
+									<div class="text-center">
+										<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#8c68cd,secondary:#4788ff" style="width:75px;height:75px"></lord-icon>
+										<h5 class="mt-2">Aucun résultat trouvé</h5>
+										<p class="text-muted mb-0">Nous avons recherché plus de 200 000 tâches, mais nous n'avons trouvé aucune équipe correspondant à votre recherche.</p>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% for team in teams %}
+							<div class="col-xl-3 col-lg-6">
+								<div class="card">
+									<div class="card-body text-center p-4">
+										<img src="/images/{{ team.image ? team.image : 'companies/img-2.png'}}" alt="icon de {{ team.name }}" height="45">
+										<h5 class="mb-1 mt-4">
+											<a href="apps-ecommerce-seller-details" class="link-primary">{{ team.name }}</a>
+										</h5>
+										<p class="text-muted mb-4">{{team.responsible ? team.responsible.username : '' }}</p>
+										<div class="row justify-content-center">
+											<div class="col-lg-8">
+												<div id="chart-seller2" data-colors='["--vz-success"]'></div>
+											</div>
+										</div>
+										<div class="row mt-4">
+											<div class="col-lg-6 border-end-dashed border-end">
+												<h5>784</h5>
+												<span class="text-muted">Item Stock</span>
+											</div>
+											<div class="col-lg-6">
+												<h5>$97,642</h5>
+												<span class="text-muted">Wallet Balance</span>
+											</div>
+										</div>
+										<div class="mt-4">
+											<a href="{{ path("app_team_show", {"id": team.id}) }}" class="btn btn-light w-100">Voir détail</a>
+										</div>
+									</div>
+								</div>
+                            {{ include('pages/team/_form.html.twig', {team : team}) }}
+							</div>
+						{% endfor %}
+						<!--end col-->
+					</div>
+					<!--end row-->
+
+					<div class="row g-0 text-center text-sm-start align-items-center mb-3">
+						<div class="col-sm-6">
+							<div>
+
+								{% if teams|length > 0 %}
+									<p class="mb-sm-0">
+										Affichage de 1 à 8 sur
+										{{ teams|length }}
+										entrées
+									</p>
+								{%  endif %}
+							</div>
+						</div>
+						<!-- end col -->
+						<div class="col-sm-6">
+							<ul class="pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
+								{{ knp_pagination_render(teams) }}
+							</ul>
+						</div>
+						<!-- end col -->
+					</div>
+					<!-- end row -->
+
+					{{ include('pages/team/_form.html.twig', {team : null}) }}
+
+				</div>
+				<!-- container-fluid -->
+			</div>
+			<!-- End Page-content -->
+
+			{{ include('layout/footer.html.twig') }}
+		</div>
+		<!-- end main content-->
+
+	</div>
+	<!-- END layout-wrapper -->
+
+
+	{{ include('layout/js.html.twig') }}
+
+	<!-- apexcharts -->
+	<script src="/libs/apexcharts/apexcharts.min.js"></script>
+
+	<!-- sellers init js -->
+	<script src="/js/pages/sellers.init.js"></script>
+
+	<!-- App js -->
+	<script src="/js/app.js"></script>
+</body></html>

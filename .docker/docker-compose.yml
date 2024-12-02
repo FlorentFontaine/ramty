@@ -1,0 +1,153 @@
+services:
+  php:
+    build: php
+    container_name: $PHP_CONTAINER_NAME
+    volumes:
+      - ..:$PHP_ROOT_DIR
+    ports:
+      - 8008:8008
+
+  mercure:
+    image: dunglas/mercure
+    restart: unless-stopped
+    container_name: $MERCURE_CONTAINER_NAME
+    environment:
+      SERVER_NAME: ':80'
+      MERCURE_PUBLISHER_JWT_KEY: $MERCURE_PUBLISHER_JWT_KEY
+      MERCURE_SUBSCRIBER_JWT_KEY: $MERCURE_SUBSCRIBER_JWT_KEY
+      # Set the URL of your Symfony project (without trailing slash!) as value of the cors_origins directive
+      MERCURE_EXTRA_DIRECTIVES: |
+        cors_origins http://127.0.0.1:80
+    # Comment the following line to disable the development mode
+    command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
+    volumes:
+      - ./mercure/mercure_data:/data
+      - ./mercure/mercure_config:/config
+
+  apache:
+    image: httpd:2.4
+    container_name: $APACHE_CONTAINER_NAME
+    environment:
+      VHOST_BASE_DOC_ROOT: $PHP_ROOT_DIR
+      VHOST_SERVER_NAME: $APACHE_SERVER_NAME
+      VHOST_PHP_HOST: $PHP_CONTAINER_NAME
+    ports:
+      - 80:80
+    volumes:
+      - ./config/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./config/vhosts:/etc/apache2/sites-enabled
+      - ..:$PHP_ROOT_DIR
+    depends_on:
+      - php
+
+  db:
+    image: mysql:8.0
+    container_name: $DB_CONTAINER_NAME
+    environment:
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    command:
+      --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: $DB_ADMIN_CONTAINER_NAME
+    environment:
+      PMA_HOST: $DB_CONTAINER_NAME
+      PMA_PORT: $DB_PORT
+      PMA_USER: root
+      PMA_PASSWORD: $DB_ROOT_PASSWORD
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.11.0
+    container_name: $FILEBEAT_CONTAINER_NAME
+    command: chmod go-w /usr/share/filebeat/filebeat.yml
+    volumes:
+      - "./data/log:/var/log/import"
+      - "./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
+      - "./elk/logstash/logstash-beats.crt:/etc/pki/tls/certs/logstash-beats.crt"
+      - "./filebeat/modules/apache-access.yml:/usr/share/filebeat/modules.d/apache-access.yml"
+      - "./filebeat/modules/apache-error.yml:/usr/share/filebeat/modules.d/apache-error.yml"
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    container_name: $ELASTICSEARCH_CONTAINER_NAME
+    build:
+      context: elasticsearch/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
+      - elasticsearch:/usr/share/elasticsearch/data:z
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      discovery.type: single-node
+    networks:
+      - elk
+
+  logstash:
+    container_name: $LOGSTASH_CONTAINER_NAME
+    build:
+      context: logstash/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    ports:
+      - "5044:5044"
+      - "50000:50000/tcp"
+      - "50000:50000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    container_name: $KIBANA_CONTAINER_NAME
+    build:
+      context: kibana/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
+    ports:
+      - "5601:5601"
+    environment:
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+      KIBANA_FLEET_SETUP: '1'
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  dockerize:
+    container_name: $DOCKERIZE_CONTAINER_NAME
+    image: jwilder/dockerize
+
+networks:
+  elk:
+    driver: bridge
+
+volumes:
+  mercure_data:
+  mercure_config:
+  setup:
+  elasticsearch:

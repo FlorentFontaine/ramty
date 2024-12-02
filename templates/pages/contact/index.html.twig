@@ -1,0 +1,159 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/kylir/www/ramty/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/kylir/www/ramty/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %} #}
+
+
+{{ include('layout/main.html.twig') }}
+
+<head>
+
+    {{ include('layout/title.html.twig', {title: 'Contact'}) }}
+
+    <link href="/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    {{ include('layout/css.html.twig') }}
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        {{ include('layout/menu.html.twig') }}
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card rounded-0 bg-soft-primary mx-n4 mt-n4 border-top border-0 card-border-effect-none">
+                                <div class="px-4">
+                                    <div class="row">
+                                        <div class="col-xxl-6 align-self-center">
+                                            <div class="py-4">
+                                                <h4 class="display-6 coming-soon-text">Contactez nous</h4>
+                                                <p class="text-primary fs-15 mt-3">Si vous ne trouvez pas de réponse à votre question dans notre FAQ, vous pouvez toujours nous contacter ou nous envoyer un courriel. Nous vous répondrons dans les plus brefs délais !</p>
+                                                <div class="hstack flex-wrap gap-2">
+                                                    <a href="{{ path("app_help") }}"><button type="button" class="btn btn-primary btn-label rounded-pill"><i class="ri-question-line label-icon align-middle rounded-pill fs-16 me-2"></i> Aide</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 ms-auto">
+                                            <div class="mb-n5 pb-1 faq-img d-none d-xxl-block">
+                                                <img src="/images/user-illustarator-1.png" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- start contact -->
+                            <section class="section" id="contact">
+                                <div class="container">
+                                    <div class="row gy-4">
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-4">
+                                                                <label for="subject" class="form-label fs-13">Sujet</label>
+                                                                <input type="text" class="form-control bg-light border-light" id="subject" name="subject" placeholder="Votre sujet.." />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-4">
+                                                                <label for="subject" class="form-label fs-13">Thème</label>
+                                                                <select class="form-control bg-light border-light" id="subject" name="subject">
+                                                                    <option value="1">Support</option>
+                                                                    <option value="2">Sales</option>
+                                                                    <option value="3">General</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3">
+                                                                <label for="comments" class="form-label fs-13">Message</label>
+                                                                <textarea name="comments" id="comments" rows="5" class="form-control bg-light border-light" placeholder="Votre message..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 text-end">
+                                                            <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Envoyer le message">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- end row -->
+                                </div>
+                                <!-- end container -->
+                            </section>
+                            <!-- end contact -->
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            {{ include('layout/footer.html.twig') }}
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    {{ include('layout/js.html.twig') }}
+
+    <!-- list.js min js -->
+    <script src="/libs/list.js/list.min.js"></script>
+    <script src="/libs/list.pagination.js/list.pagination.min.js"></script>
+
+    <script src="/js/pages/crm-contact.init.js"></script>
+
+    <!-- Sweet Alerts js -->
+    <script src="/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- App js -->
+    <script src="/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!-- Modal -->
+<div class="modal fade zoomIn" id="addSeller" tabindex="-1" aria-labelledby="addSellerLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addSellerLabel">Ajouter une équipe</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content">
+					<div class="tab-pane active" id="personalDetails" role="tabpanel">
+						<form action="" method="post">
+							<div class="row">
+								<div class="col-lg-6">
+									<label for="title-field" class="form-label">Label</label>
+									<input type="text" id="title-field" class="form-control" name="name" placeholder="Titre" required value="{{ team ? team.name : '' }}"/>
+								</div>
+                                <div class="col-lg-6">
+                                    <label for="ticket-status" class="form-label">Statut</label>
+                                    <select class="form-control" name="responsible" data-choices data-choices-sorting-false data-choices-search-false id="ticket-status">
+                                        <option value="">Responsable</option>
+                                        {% for user in users %}
+                                            <option 
+                                            {% if team and team.responsible %}
+                                                {% if team.responsible.id == user.id %}
+                                                    selected
+                                                {% endif %}
+                                            {% endif %}
+                                            value="{{ user.id }}">{{ user.username }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+							</div>
+							<div class="row pt-3">
+								<div class="col-lg-6">
+									<label class="form-label">Secteurs</label>
+									<div data-simplebar style="height: 185px;">
+										<ul class="list-unstyled vstack gap-2 mb-0">
+											{% for sector in sectors %}
+												<li>
+													<div class="form-check d-flex align-items-center">
+														<input {% if team %} {% for sectorInTeam in team.sectors %} {% if sectorInTeam.id == sector.id %} checked {% endif %} {% endfor %} {% endif %} class="form-check-input me-3" type="checkbox" name="sectors[]" value="{{ sector.id }}" id="sector-{{ sector.id }}">
+														<label class="form-check-label d-flex align-items-center" for="sector-{{ sector.id }}">
+															<span class="flex-shrink-0">
+																<img src="/images/sectors/avatar-2.jpg" alt="" class="avatar-xxs rounded-circle">
+															</span>
+															<span class="flex-grow-1 ms-2">{{ sector.name }}</span>
+														</label>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+								<!--end col-->
+								<div class="col-lg-6">
+									<label class="form-label">Membres</label>
+									<div data-simplebar style="height: 185px;">
+										<ul class="list-unstyled vstack gap-2 mb-0">
+											{% for user in users %}
+												<li>
+													<div class="form-check d-flex align-items-center">
+														<input {% if team %} {% for userInTeam in team.users %} {% if userInTeam.id == user.id %} checked {% endif %} {% endfor %} {% endif %} class="form-check-input me-3" type="checkbox" name="users[]" value="{{ user.id }}" id="user-{{ user.id }}">
+														<label class="form-check-label d-flex align-items-center" for="user-{{ user.id }}">
+															<span class="flex-shrink-0">
+																<img src="/images/users/avatar-2.jpg" alt="" class="avatar-xxs rounded-circle">
+															</span>
+															<span class="flex-grow-1 ms-2">{{ user.username }}</span>
+														</label>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+								<!--end col-->
+								<div class="col-lg-12">
+									<div class="hstack gap-2 justify-content-end">
+										<button class="btn btn-link link-success text-decoration-none fw-medium" data-bs-dismiss="modal">
+											<i class="ri-close-line me-1 align-middle"></i>
+											Fermer</button>
+										<button type="submit" class="btn btn-primary">
+											<i class="ri-save-3-line align-bottom me-1"></i>
+											Enregistrer</button>
+									</div>
+								</div>
+								<!--end col-->
+							</div>
+						</form>
+					</div>
+					<!--end row-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!--end modal-->

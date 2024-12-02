@@ -1,0 +1,136 @@
+<div class="modal fade zoomIn event-modal" id="showModal{{ event ? event.id : event }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="modal-header p-3 bg-soft-primary">
+                <h5 class="modal-title" id="exampleModalLabel">Créer un événement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+            </div>
+            <form class="tablelist-form" autocomplete="off" id="form-event" action="" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="tasksId" name="id" value="{{ event ? event.id : null }}" />
+                    <div class="row g-3">
+                        <div class="col-lg-12">
+                            <label for="title-field" class="form-label">Titre</label>
+                            <input type="text" id="title-field" class="form-control" name="title" placeholder="Titre" required value="{{ event ? event.title : '' }}" />
+                        </div>
+                        <!--end col-->
+                        <div class="col-lg-12">
+                            <label for="content-field" class="form-label">Description</label>
+                            <textarea id="content-event" class="form-control" name="content">{{ event ? event.content|raw : '' }}</textarea>
+                        </div>
+                        <!--end col-->
+                        <div class="col-lg-6">
+                            <label class="form-label">Assigné à</label>
+                            <div data-simplebar style="height: 185px;">
+                                <ul class="list-unstyled vstack gap-2 mb-0">
+                                {% for user in users %}
+                                    <li>
+                                        <div class="form-check d-flex align-items-center">
+                                            <input 
+                                            {% if event %}
+                                                {% for assigned in event.assigned %}
+                                                    {% if assigned.id == user.id %}
+                                                        checked
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            class="form-check-input me-3" type="checkbox" name="assigned[]" value="{{ user.id }}" id="user-{{ user.id }}">
+                                            <label class="form-check-label d-flex align-items-center" for="user-{{ user.id }}">
+                                                <span class="flex-shrink-0">
+                                                    <img src="/images/users/avatar-2.jpg" alt="" class="avatar-xxs rounded-circle">
+                                                </span>
+                                                <span class="flex-grow-1 ms-2">{{ user.username }}</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label">Concerne</label>
+                            <div data-simplebar style="height: 185px;">
+                                <select class="form-control" id="choices-single-groups" name="attached" data-choices data-choices-groups data-placeholder="Concerne" name="choices-single-groups">
+                                    <option value="">Concerne</option>
+                                    {% for typeStaff in typeStaffs %}
+                                        <optgroup label="{{ typeStaff.name }}">
+                                            {% for staff in typeStaff.staff %}
+                                                <option
+                                                {% if event %}
+                                                    {% if event.attached.id == staff.id %}
+                                                        selected
+                                                    {% endif %}
+                                                {% endif %}
+                                                value="{{ staff.id }}">{{ staff.fullname }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="ticket-status" class="form-label">Statut</label>
+                            <select class="form-control" name="status" data-choices data-choices-sorting-false data-choices-search-false id="ticket-status">
+                                <option value="">Statut</option>
+                                {% for status in statusEvents %}
+                                    <option 
+                                    {% if event %}
+                                        {% if event.status.id == status.id %}
+                                            selected
+                                        {% endif %}
+                                    {% endif %}
+                                    value="{{ status.id }}">{{ status.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="ticket-type" class="form-label">Type</label>
+                            <select class="form-control" name="type" id="event-category"  data-choices data-choices-sorting-false data-choices-search-false id="ticket-type">
+                                <option value="">Type</option>
+                                {% for type in typeEvents %}
+                                    <option
+                                    {% if event %}
+                                        {% if event.type.id == type.id %}
+                                            selected
+                                        {% endif %}
+                                    {% endif %}
+                                    value="{{ type.id }}">{{ type.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!--end col-->
+                        <div class="col-lg-6">
+                            <label for="duedate-field" class="form-label">Echéance</label>
+                            <input type="text" id="duedate-field" name="due_date_at" class="form-control" data-provider="flatpickr" placeholder="Echéance" required value="{{ event ? event.dueDateAt|date('Y-m-d') : '' }}" />
+                        </div>
+                        <!--end col-->
+                        <div class="col-lg-6">
+                            <label for="priority-field" name="priority" class="form-label">Priorité</label>
+                            <select class="form-control" data-choices data-choices-sorting-false data-choices-search-false name="priority" id="priority-field">
+                                <option value="">Priority</option>
+                                {% for priority in priorities %}
+                                    <option
+                                    {% if event %}
+                                        {% if event.priority.id == priority.id %}
+                                            selected
+                                        {% endif %}
+                                    {% endif %}
+                                    value="{{ priority.id }}">{{ priority.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" id="close-modal" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">{{event ? "Modifier" : "Ajouter"}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
